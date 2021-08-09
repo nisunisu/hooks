@@ -25,6 +25,7 @@ Linkにある通り、リポジトリ単位でhookを使いたい場合は留意
 1. 前提条件を満たす or 以下を実施
     ```shell
     mkdir -p ~/.config/git
+    cd ~/.config/git
     [ -d hooks ] && mv hooks hooks_$(date +"%Y%m%d") # 既にhooksディレクトリがある場合はフォルダごと退避する
     git clone ${this_git_repogitory}
     ```
