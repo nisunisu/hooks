@@ -1,5 +1,5 @@
 # やりたいこと
-- ディレクトリ配下ファイルに特殊スペース(0xa0 = NBSP = Macで`Opt`+スペースで入力される)が入っている場合、commitがキャンセルされるようにする
+- gitディレクトリ配下のテキストファイルに特殊スペース(0xa0 = NBSP = Macで`Opt`+スペースで入力される)が入っている場合、commitがキャンセルされるようにする
  
 # 前提条件
 ```shell
@@ -22,8 +22,13 @@ vi _run_local-hook.sh
 Linkにある通り、リポジトリ単位でhookを使いたい場合は留意すること
 
 # 使い方
-1. 前提条件を満たす
-1. git commitする
+1. 前提条件を満たす or 以下を実施
+    ```shell
+    mkdir -p ~/.config/git
+    [ -d hooks ] && mv hooks hooks_$(date +"%Y%m%d") # 既にhooksディレクトリがある場合はフォルダごと退避する
+    git clone ${this_git_repogitory}
+    ```
+1. 任意の作業スペースで`git commit`する
 
 # Links
 - [Qiita - globalなgit-hooksを設定して、すべてのリポジトリで共有のhooksを使う](https://qiita.com/ik-fib/items/55edad2e5f5f06b3ddd1)
