@@ -6,10 +6,10 @@
 # ディレクトリ作成
 [ ! -e ~/.config/git/hooks ] && mkdir -p ~/.config/git/hooks
 
-# globalで
+# globalでhookのpathを設定
 git config --global core.hooksPath '~/.config/git/hooks'
 
-# テンプレをコピー
+# (本リポジトリ以外のファイルを作成したい場合)hook path配下にテンプレファイルを持ってくる
 cp -p $(brew --prefix git)/share/git-core/templates/hooks/pre-commit.sample ~/.config/git/hooks/pre-commit
 
 # commit時に実行したいスクリプトを作成(pre-commitから呼び出す)
