@@ -12,9 +12,16 @@ fi
 # Function
 function detect_no-break-space(){
   file_arr=(
-    $( find . -type f -exec grep -Iq . {} \; -print | grep -v '.git/' )
+    $( git status -s | cut -c4- )
   )
   for file in "${file_arr[@]}" ; do
+    # File exsistence check
+    if [ ! -f ${file} ] ; then
+      echo "WARN : File NOT exist -> ${file}"
+      retcode=255
+    fi
+    
+    # NBSP check
     ret=$(grep -nE '\xa0' "${file}")
     if [ $? -eq 0 ] ; then
       echo "WARN : NBSP Detected -> ${file}"
