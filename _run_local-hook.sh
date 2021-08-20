@@ -12,7 +12,7 @@ fi
 # Function
 function detect_no-break-space(){
   file_arr=(
-    $( git status -s | cut -c4- )
+    $( git status -s | grep -E "^ *(A|M)" | cut -c4- )
   )
   for file in "${file_arr[@]}" ; do
     # File exsistence check
